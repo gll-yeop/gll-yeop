@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>김태엽 블로그</title>
+        <link rel="stylesheet" href="{%static 'css/style.css'%}">
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>김태엽의 블로그입니다!<a href="{% url 'create' %}" class='btn' style="margin-left:20px;">글쓰기</a></h1>
+            
+            {% for blog in blogs.all %}
+                <div class="card">
+                    <h1 style="margin-top:0;"><a href="{% url 'detail' blog.id %}"></a>{{blog.title}}</a></h1>
+                    <p>{{blog.body}}</p>
+                    <a class='btn' href="{% url 'update' blog.id %}">수정</a>
+                    <a class='btn' href="{% url 'delete' blog.id %}">삭제</a>
+                    <!-- <p>{{blog.pub_date}}</p> -->
+                </div>
+            {% endfor %}
+        </div>
+
+    </body>
+</html>
